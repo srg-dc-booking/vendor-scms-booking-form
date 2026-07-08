@@ -6,45 +6,56 @@
   <title>Vendor Booking – SCMS</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f4f5f7; margin: 0; padding: 2rem 1rem; }
-    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.08); max-width: 700px; margin: 0 auto; padding: 2rem; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.08); max-width: 780px; margin: 0 auto; padding: 2rem; }
     h1 { font-size: 1.3rem; margin-bottom: .3rem; color: #1a1a2e; }
     p.sub { font-size: .85rem; color: #666; margin-bottom: 1.5rem; }
-    hr { border: none; border-top: 1px solid #e5e7eb; margin: 1.4rem 0; }
-    h2 { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #6b7280; margin: 0 0 .8rem; }
+    hr  { border: none; border-top: 1px solid #e5e7eb; margin: 1.4rem 0; }
+    h2  { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #6b7280; margin: 0 0 .8rem; }
     label { display: block; font-size: .85rem; font-weight: 600; color: #374151; margin-bottom: .3rem; }
     input[type=text], input[type=email], input[type=date], input[type=number], select, textarea {
       width: 100%; padding: .55rem .8rem; border: 1.5px solid #d1d5db; border-radius: 6px;
-      font-size: .88rem; color: #111; box-sizing: border-box; font-family: inherit;
-    }
+      font-size: .88rem; color: #111; box-sizing: border-box; font-family: inherit; }
     textarea { resize: vertical; }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .row  { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
     .field { margin-bottom: 1rem; }
-    .err { color: #dc2626; font-size: .78rem; margin-top: .2rem; display: none; }
+    .err  { color: #dc2626; font-size: .78rem; margin-top: .2rem; display: none; }
     .radio-row { display: flex; gap: 1.5rem; margin-top: .3rem; }
     .radio-row label { font-weight: 400; display: flex; align-items: center; gap: .4rem; cursor: pointer; }
+    .info-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: .65rem .9rem; font-size: .82rem; color: #1e40af; margin-bottom: .8rem; }
+
+    /* Site box */
+    .site-box { border: 1.5px solid #e5e7eb; border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 1rem; background: #fafafa; }
+    .site-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .8rem; }
+    .site-title { font-weight: 700; font-size: .95rem; color: #1a1a2e; }
+    .btn-rm-site { background: #fef2f2; border: 1px solid #fca5a5; color: #dc2626; border-radius: 5px; padding: .3rem .8rem; font-size: .82rem; cursor: pointer; }
 
     /* Table */
-    table { width: 100%; border-collapse: collapse; margin-bottom: .6rem; }
-    th { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: #6b7280; text-align: left; padding: 0 .4rem .5rem; }
-    td { padding: .25rem .3rem; }
-    td input, td select { padding: .4rem .5rem; font-size: .83rem; }
+    .tbl-wrap { overflow-x: auto; margin-bottom: .4rem; }
+    table { width: 100%; border-collapse: collapse; min-width: 400px; }
+    th { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: #6b7280; text-align: left; padding: 0 .35rem .5rem; white-space: nowrap; }
+    td { padding: .22rem .3rem; }
+    td input, td select { padding: .38rem .45rem; font-size: .82rem; width: 100%; min-width: 70px; }
     .del-btn { background: none; border: none; color: #ef4444; font-size: 1.2rem; cursor: pointer; padding: 0 .3rem; }
-    .add-btn { background: #f3f4f6; border: 1.5px dashed #9ca3af; border-radius: 6px; width: 100%; padding: .45rem; font-size: .85rem; cursor: pointer; margin-top: .3rem; }
-    .add-btn:hover { background: #e5e7eb; }
 
+    .add-row-btn { background: #f3f4f6; border: 1.5px dashed #9ca3af; border-radius: 5px; padding: .35rem .9rem; font-size: .82rem; cursor: pointer; }
+    .add-row-btn:hover { background: #e5e7eb; }
+    .add-site-btn { background: #eff6ff; border: 1.5px dashed #3b82f6; border-radius: 6px; width: 100%; padding: .5rem; font-size: .88rem; font-weight: 600; color: #2563eb; cursor: pointer; margin-bottom: 1rem; }
+    .add-site-btn:hover { background: #dbeafe; }
     .submit-btn { width: 100%; padding: .8rem; background: #2563eb; color: #fff; border: none; border-radius: 6px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 1.5rem; }
     .submit-btn:disabled { background: #93c5fd; cursor: not-allowed; }
     .success { background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; padding: 1rem 1.2rem; color: #15803d; margin-top: 1.2rem; display: none; }
     .success h3 { margin: 0 0 .4rem; }
+    @media(max-width:540px){ .row{ grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
 <div class="card">
   <h1>Vendor Booking — SCMS</h1>
-  <p class="sub">Complete all fields and submit. You will receive a confirmation email with your booking details.</p>
+  <p class="sub">Complete all fields and submit your delivery booking. You will receive a confirmation email with your booking reference and allocated slot.</p>
 
   <form id="frm">
 
+    <!-- Vendor -->
     <h2>Vendor Details</h2>
     <div class="row">
       <div class="field">
@@ -60,77 +71,89 @@
     </div>
 
     <hr>
+    <!-- Delivery method -->
     <h2>Delivery Method</h2>
     <div class="field">
+      <div class="info-box">
+        <strong>Direct</strong> = Delivered into DC for processing. Generally 1–2 consignments for one collecting DC.<br>
+        <strong>Via DC</strong> = Into collecting DC for on-forwarding to end site. Generally 2+ consignments for multiple sites.
+      </div>
       <div class="radio-row">
-        <label><input type="radio" name="dt" value="Direct" onchange="switchMode()"> Direct</label>
-        <label><input type="radio" name="dt" value="Via DC" onchange="switchMode()"> Via DC</label>
+        <label><input type="radio" name="dt" value="Direct" onchange="onMode()"> Direct</label>
+        <label><input type="radio" name="dt" value="Via DC" onchange="onMode()"> Via DC</label>
       </div>
       <div class="err" id="e-dt">Please select a delivery method</div>
     </div>
 
-    <!-- Direct DC -->
-    <div id="dc-direct" class="field" style="display:none">
-      <label>DC *</label>
-      <select id="dc"><option value="">— Select DC —</option></select>
-      <div class="err" id="e-dc">Required</div>
+    <!-- DIRECT section -->
+    <div id="sect-direct" style="display:none">
+      <hr>
+      <h2>DC Site Bookings <small style="font-weight:400;text-transform:none;font-size:.75rem">(up to 5 DCs)</small></h2>
+      <div id="sites-direct"></div>
+      <button type="button" class="add-site-btn" id="btn-add-site" onclick="addSite()">+ Add Another DC Site</button>
     </div>
 
-    <!-- Via DC -->
-    <div id="dc-via" style="display:none">
-      <div class="row">
-        <div class="field">
-          <label>Initial DC *</label>
-          <select id="init-dc"><option value="">— Select Initial DC —</option></select>
-          <div class="err" id="e-init-dc">Required</div>
-        </div>
-        <div class="field">
-          <label>End Site Receiving DC *</label>
-          <select id="end-dc"><option value="">— Select End Site DC —</option></select>
-          <div class="err" id="e-end-dc">Required</div>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-    <h2>Consignment Details</h2>
-    <table>
-      <thead id="thead"></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-    <button type="button" class="add-btn" onclick="addRow()">+ Add Row</button>
-    <div class="err" id="e-con">Add at least one consignment</div>
-
-    <hr>
-    <h2>Preferred Delivery Slot</h2>
-    <div class="row">
+    <!-- VIA DC section -->
+    <div id="sect-via" style="display:none">
+      <hr>
       <div class="field">
-        <label>Preferred Date *</label>
-        <input type="date" id="pdate" />
-        <div class="err" id="e-pdate">Please select a weekday</div>
+        <label>Initial DC (Collection / Routing DC) *</label>
+        <select id="init-dc"><option value="">— Select Initial DC —</option></select>
+        <div class="err" id="e-init-dc">Required</div>
       </div>
+      <h2>Consignment Details — End Sites <small style="font-weight:400;text-transform:none;font-size:.75rem">(End Site Receiving column required)</small></h2>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>End Site Receiving</th>
+              <th>Consignment No</th>
+              <th>Qty of SSCC</th>
+              <th>Loose Load (Y/N)</th>
+              <th>LL Qty of SSCC</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="via-tbody"></tbody>
+        </table>
+      </div>
+      <button type="button" class="add-row-btn" onclick="addViaRow()">+ Add Row</button>
+      <div class="err" id="e-via-con">Add at least one consignment row</div>
+
+      <div style="margin-top:1rem">
+        <div class="row">
+          <div class="field">
+            <label>Preferred Date *</label>
+            <input type="date" id="via-date" />
+            <div class="err" id="e-via-date">Please select a weekday</div>
+          </div>
+          <div class="field">
+            <label>Preferred Time</label>
+            <select id="via-time">
+              <option value="ANY">No Preference</option>
+              <option value="MORNING">Morning (6am – 12pm)</option>
+              <option value="AFTERNOON">Afternoon (12pm – 6pm)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes always visible once method selected -->
+    <div id="sect-notes" style="display:none">
+      <hr>
+      <h2>Notes</h2>
       <div class="field">
-        <label>Preferred Time</label>
-        <select id="ptime">
-          <option value="ANY">No Preference</option>
-          <option value="MORNING">Morning (6am – 12pm)</option>
-          <option value="AFTERNOON">Afternoon (12pm – 6pm)</option>
-        </select>
+        <textarea id="notes" rows="3" placeholder="Special instructions, access requirements, or other relevant notes..."></textarea>
       </div>
+      <button type="submit" class="submit-btn" id="sbtn">Submit Booking</button>
     </div>
 
-    <hr>
-    <h2>Notes</h2>
-    <div class="field">
-      <textarea id="notes" rows="3" placeholder="Special instructions or relevant notes..."></textarea>
-    </div>
-
-    <button type="submit" class="submit-btn" id="sbtn">Submit Booking</button>
   </form>
 
   <div class="success" id="ok">
-    <h3>✅ Request Submitted</h3>
-    <p>Your SCMS booking request has been received. You will receive a confirmation email shortly. If nothing arrives within 15 minutes please contact the warehouse team.</p>
+    <h3>✅ Booking Submitted</h3>
+    <p>Your SCMS booking request has been received. You will receive a confirmation email shortly with your booking reference and allocated slot details. If nothing arrives within 15 minutes please contact the warehouse team.</p>
   </div>
 </div>
 
@@ -138,117 +161,225 @@
 const WEBHOOK = "PASTE_YOUR_POWER_AUTOMATE_URL_HERE";
 
 const DCS = ["ANA LAVERTON","ANA NSW RDC","ANA QLD RDC","ANA WA RDC","HS 2037","HS 5001","SPL LAVERTON","SPL NSW RDC","SPL QLD RDC","SPL WA RDC"];
-["dc","init-dc","end-dc"].forEach(id => DCS.forEach(d => { const o = new Option(d,d); document.getElementById(id).add(o); }));
+["init-dc"].forEach(id => DCS.forEach(d => { document.getElementById(id)?.add(new Option(d,d)); }));
 
-let viaMode = false, rowId = 0;
+let siteCount = 0, rowCounters = {}, viaRowId = 0;
+const MAX_SITES = 5;
 
-function switchMode() {
-  viaMode = document.querySelector('input[name=dt]:checked')?.value === "Via DC";
-  document.getElementById("dc-direct").style.display = viaMode ? "none" : "block";
-  document.getElementById("dc-via").style.display    = viaMode ? "block" : "none";
-  buildHeader();
-  document.getElementById("tbody").innerHTML = "";
-  rowId = 0;
-  addRow();
+function dcOptions(selected="") {
+  return `<option value="">— Select DC —</option>` + DCS.map(d => `<option${d===selected?" selected":""}>${d}</option>`).join("");
 }
 
-function buildHeader() {
-  const cols = viaMode
-    ? ["End Site Receiving","Consignment No","Qty SSCC","Loose Load","LL Qty SSCC",""]
-    : ["Consignment No","Qty SSCC","Loose Load","LL Qty SSCC",""];
-  document.getElementById("thead").innerHTML = "<tr>" + cols.map(c=>`<th>${c}</th>`).join("") + "</tr>";
+function addSite() {
+  if (siteCount >= MAX_SITES) return;
+  siteCount++;
+  const s = siteCount;
+  rowCounters[s] = 0;
+  const div = document.createElement("div");
+  div.className = "site-box";
+  div.id = "site-"+s;
+  div.innerHTML = `
+    <div class="site-header">
+      <span class="site-title">Site ${s}</span>
+      ${s > 1 ? `<button type="button" class="btn-rm-site" onclick="removeSite(${s})">Remove Site</button>` : ""}
+    </div>
+    <div class="field">
+      <label>DC *</label>
+      <select id="s${s}-dc">${dcOptions()}</select>
+      <div class="err" id="e-s${s}-dc">Required</div>
+    </div>
+    <label style="font-size:.82rem;font-weight:700;color:#374151;margin-bottom:.4rem;display:block">Consignment Details</label>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Consignment No</th>
+            <th>Qty of SSCC</th>
+            <th>Loose Load (Y/N)</th>
+            <th>LL Qty of SSCC</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="s${s}-tbody"></tbody>
+      </table>
+    </div>
+    <button type="button" class="add-row-btn" onclick="addConRow(${s})">+ Add Row</button>
+    <div class="err" id="e-s${s}-con">Add at least one consignment row</div>
+    <div style="margin-top:.8rem">
+      <div class="row">
+        <div class="field">
+          <label>Preferred Date *</label>
+          <input type="date" id="s${s}-date" min="${new Date().toISOString().split('T')[0]}" />
+          <div class="err" id="e-s${s}-date">Please select a weekday</div>
+        </div>
+        <div class="field">
+          <label>Preferred Time</label>
+          <select id="s${s}-time">
+            <option value="ANY">No Preference</option>
+            <option value="MORNING">Morning (6am – 12pm)</option>
+            <option value="AFTERNOON">Afternoon (12pm – 6pm)</option>
+          </select>
+        </div>
+      </div>
+    </div>`;
+  document.getElementById("sites-direct").appendChild(div);
+  addConRow(s);
+  updateAddBtn();
 }
 
-function addRow() {
-  rowId++;
-  const r = rowId;
-  const end = viaMode ? `<td><input type="text" id="es${r}" placeholder="End site"></td>` : "";
+function removeSite(s) {
+  document.getElementById("site-"+s)?.remove();
+  siteCount--;
+  updateAddBtn();
+}
+
+function updateAddBtn() {
+  const btn = document.getElementById("btn-add-site");
+  if (btn) btn.style.display = siteCount >= MAX_SITES ? "none" : "block";
+}
+
+function addConRow(s) {
+  rowCounters[s] = (rowCounters[s]||0) + 1;
+  const r = rowCounters[s];
+  const id = `s${s}r${r}`;
   const tr = document.createElement("tr");
-  tr.id = "r"+r;
-  tr.innerHTML = `${end}
-    <td><input type="text" id="cn${r}" placeholder="Consignment No"></td>
-    <td><input type="number" id="qs${r}" value="1" min="0" style="width:70px"></td>
-    <td><select id="ll${r}"><option value="N">N</option><option value="Y">Y</option></select></td>
-    <td><input type="number" id="lq${r}" value="0" min="0" style="width:70px"></td>
-    <td><button type="button" class="del-btn" onclick="document.getElementById('r${r}').remove()">×</button></td>`;
-  document.getElementById("tbody").appendChild(tr);
+  tr.id = "row-"+id;
+  tr.innerHTML = `
+    <td><input type="text" id="${id}-cn" placeholder="Consignment No"></td>
+    <td><input type="number" id="${id}-qs" value="1" min="0" style="width:80px"></td>
+    <td><select id="${id}-ll"><option value="N">N</option><option value="Y">Y</option></select></td>
+    <td><input type="number" id="${id}-lq" value="0" min="0" style="width:80px"></td>
+    <td><button type="button" class="del-btn" onclick="document.getElementById('row-${id}').remove()">×</button></td>`;
+  document.getElementById("s"+s+"-tbody").appendChild(tr);
 }
 
-function rows() {
-  return [...document.querySelectorAll("#tbody tr")].map(tr => {
-    const n = tr.id.replace("r","");
-    const con = document.getElementById("cn"+n)?.value.trim();
-    if (!con) return null;
-    const o = { consignment: con, qty_sscc: +document.getElementById("qs"+n).value||0,
-                loose_load: document.getElementById("ll"+n).value,
-                ll_qty_sscc: +document.getElementById("lq"+n).value||0 };
-    if (viaMode) o.end_site_receiving = document.getElementById("es"+n)?.value.trim()||"";
-    return o;
-  }).filter(Boolean);
+function addViaRow() {
+  viaRowId++;
+  const r = viaRowId;
+  const tr = document.createElement("tr");
+  tr.id = "vr"+r;
+  tr.innerHTML = `
+    <td><input type="text" id="v${r}-es" placeholder="End site name"></td>
+    <td><input type="text" id="v${r}-cn" placeholder="Consignment No"></td>
+    <td><input type="number" id="v${r}-qs" value="1" min="0" style="width:80px"></td>
+    <td><select id="v${r}-ll"><option value="N">N</option><option value="Y">Y</option></select></td>
+    <td><input type="number" id="v${r}-lq" value="0" min="0" style="width:80px"></td>
+    <td><button type="button" class="del-btn" onclick="document.getElementById('vr${r}').remove()">×</button></td>`;
+  document.getElementById("via-tbody").appendChild(tr);
 }
 
-// min date = today
-const pd = document.getElementById("pdate");
-const t = new Date(); pd.min = t.toISOString().split("T")[0];
+function onMode() {
+  const dt = document.querySelector('input[name=dt]:checked')?.value;
+  document.getElementById("sect-direct").style.display = dt==="Direct" ? "block" : "none";
+  document.getElementById("sect-via").style.display    = dt==="Via DC"  ? "block" : "none";
+  document.getElementById("sect-notes").style.display  = dt ? "block" : "none";
+  if (dt==="Direct" && siteCount===0) addSite();
+  if (dt==="Via DC" && viaRowId===0) addViaRow();
+}
+
+function getSiteRows(s) {
+  const rows = [];
+  document.querySelectorAll(`#s${s}-tbody tr`).forEach(tr => {
+    const n = tr.id.replace(`row-s${s}r`,"");
+    const id = `s${s}r${n}`;
+    const cn = document.getElementById(id+"-cn")?.value.trim();
+    if (cn) rows.push({ consignment: cn, qty_sscc: +document.getElementById(id+"-qs")?.value||0,
+      loose_load: document.getElementById(id+"-ll")?.value||"N",
+      ll_qty_sscc: +document.getElementById(id+"-lq")?.value||0 });
+  });
+  return rows;
+}
+
+function getViaRows() {
+  const rows = [];
+  document.querySelectorAll("#via-tbody tr").forEach(tr => {
+    const r = tr.id.replace("vr","");
+    const cn = document.getElementById("v"+r+"-cn")?.value.trim();
+    if (cn) rows.push({ end_site_receiving: document.getElementById("v"+r+"-es")?.value.trim()||"",
+      consignment: cn, qty_sscc: +document.getElementById("v"+r+"-qs")?.value||0,
+      loose_load: document.getElementById("v"+r+"-ll")?.value||"N",
+      ll_qty_sscc: +document.getElementById("v"+r+"-lq")?.value||0 });
+  });
+  return rows;
+}
 
 function isWeekend(s) { const d = new Date(s+"T12:00:00"); return d.getDay()===0||d.getDay()===6; }
 
 document.getElementById("frm").onsubmit = async function(e) {
   e.preventDefault();
   let ok = true;
-  const show = (id, bad) => { document.getElementById("e-"+id).style.display = bad?"block":"none"; if(bad) ok=false; };
+  const show = (id, bad) => { const el=document.getElementById("e-"+id); if(el) el.style.display=bad?"block":"none"; if(bad) ok=false; };
 
-  const v = document.getElementById("vendor").value.trim();
-  show("vendor", !v);
-  const em = document.getElementById("email").value.trim();
-  show("email", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em));
+  show("vendor", !document.getElementById("vendor").value.trim());
+  show("email", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById("email").value.trim()));
   const dt = document.querySelector('input[name=dt]:checked')?.value;
   show("dt", !dt);
-
-  if (dt) {
-    if (!viaMode) show("dc", !document.getElementById("dc").value);
-    else {
-      show("init-dc", !document.getElementById("init-dc").value);
-      show("end-dc", !document.getElementById("end-dc").value);
-    }
-    const rs = rows();
-    show("con", rs.length===0);
-    const d = document.getElementById("pdate").value;
-    show("pdate", !d || isWeekend(d));
-  }
-
   if (!ok) return;
+
+  const vendor = document.getElementById("vendor").value.trim();
+  const email  = document.getElementById("email").value.trim();
+  const notes  = document.getElementById("notes")?.value.trim()||null;
 
   const btn = document.getElementById("sbtn");
   btn.disabled = true; btn.textContent = "Submitting…";
 
-  const payload = {
-    booking_type: "Vendor Booking - SCMS",
-    vendor_code:  v,
-    delivery_type: document.querySelector('input[name=dt]:checked').value,
-    dc:           viaMode ? document.getElementById("init-dc").value : document.getElementById("dc").value,
-    end_site_dc:  viaMode ? document.getElementById("end-dc").value : null,
-    consignment_info: JSON.stringify(rows()),
-    no_sscc:      rows().reduce((s,r)=>s+r.qty_sscc,0),
-    preferred_date: document.getElementById("pdate").value,
-    preferred_time: document.getElementById("ptime").value,
-    comments:     document.getElementById("notes").value.trim()||null,
-    email:        em
-  };
-
   try {
-    await fetch(WEBHOOK, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload) });
-    document.getElementById("frm").style.display = "none";
-    document.getElementById("ok").style.display  = "block";
+    if (dt === "Direct") {
+      const sites = document.querySelectorAll(".site-box");
+      let allOk = true;
+      sites.forEach(box => {
+        const s = box.id.replace("site-","");
+        const dcVal = document.getElementById("s"+s+"-dc")?.value;
+        show("s"+s+"-dc", !dcVal);
+        show("s"+s+"-con", getSiteRows(s).length===0);
+        const d = document.getElementById("s"+s+"-date")?.value;
+        show("s"+s+"-date", !d||isWeekend(d));
+        if (!dcVal || getSiteRows(s).length===0 || !d||isWeekend(d)) allOk = false;
+      });
+      if (!allOk) { btn.disabled=false; btn.textContent="Submit Booking"; return; }
+
+      for (const box of sites) {
+        const s = box.id.replace("site-","");
+        const rows = getSiteRows(s);
+        const payload = { booking_type:"Vendor Booking - SCMS", vendor_code:vendor,
+          delivery_type:"Direct", dc:document.getElementById("s"+s+"-dc").value,
+          end_site_dc:null, consignment_info:JSON.stringify(rows),
+          no_sscc:rows.reduce((t,r)=>t+r.qty_sscc,0),
+          preferred_date:document.getElementById("s"+s+"-date").value,
+          preferred_time:document.getElementById("s"+s+"-time").value,
+          comments:notes, email };
+        await fetch(WEBHOOK, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload) });
+      }
+    } else {
+      const idc = document.getElementById("init-dc").value;
+      show("init-dc", !idc);
+      const vrows = getViaRows();
+      show("via-con", vrows.length===0);
+      const vd = document.getElementById("via-date").value;
+      show("via-date", !vd||isWeekend(vd));
+      if (!idc||vrows.length===0||!vd||isWeekend(vd)) { btn.disabled=false; btn.textContent="Submit Booking"; return; }
+
+      const payload = { booking_type:"Vendor Booking - SCMS", vendor_code:vendor,
+        delivery_type:"Via DC", dc:idc, end_site_dc:null,
+        consignment_info:JSON.stringify(vrows),
+        no_sscc:vrows.reduce((t,r)=>t+r.qty_sscc,0),
+        preferred_date:vd, preferred_time:document.getElementById("via-time").value,
+        comments:notes, email };
+      await fetch(WEBHOOK, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload) });
+    }
+
+    document.getElementById("frm").style.display="none";
+    document.getElementById("ok").style.display="block";
   } catch {
-    btn.disabled = false; btn.textContent = "Submit Booking";
-    alert("Could not reach the booking service. Please check your connection and try again.");
+    btn.disabled=false; btn.textContent="Submit Booking";
+    alert("Could not reach the booking service. Please try again.");
   }
 };
 
-// Pre-fill vendor from URL: ?vendor=101503
 const qv = new URLSearchParams(location.search).get("vendor");
 if (qv) { const f=document.getElementById("vendor"); f.value=qv; f.readOnly=true; f.style.background="#f3f4f6"; f.style.color="#6b7280"; }
+
+document.getElementById("via-date").min = new Date().toISOString().split("T")[0];
 </script>
 </body>
 </html>
