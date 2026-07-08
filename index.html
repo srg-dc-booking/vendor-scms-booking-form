@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vendor Booking – SCMS</title>
+  <title>Vendor Booking – Non SCMS</title>
   <style>
     body { font-family: Arial, sans-serif; background: #f4f5f7; margin: 0; padding: 2rem 1rem; }
-    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.08); max-width: 780px; margin: 0 auto; padding: 2rem; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.08); max-width: 820px; margin: 0 auto; padding: 2rem; }
     h1 { font-size: 1.3rem; margin-bottom: .3rem; color: #1a1a2e; }
     p.sub { font-size: .85rem; color: #666; margin-bottom: 1.5rem; }
     hr  { border: none; border-top: 1px solid #e5e7eb; margin: 1.4rem 0; }
     h2  { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #6b7280; margin: 0 0 .8rem; }
+    h3  { font-size: .82rem; font-weight: 700; color: #374151; margin: .8rem 0 .4rem; }
     label { display: block; font-size: .85rem; font-weight: 600; color: #374151; margin-bottom: .3rem; }
     input[type=text], input[type=email], input[type=date], input[type=number], select, textarea {
       width: 100%; padding: .55rem .8rem; border: 1.5px solid #d1d5db; border-radius: 6px;
@@ -21,41 +22,37 @@
     .err  { color: #dc2626; font-size: .78rem; margin-top: .2rem; display: none; }
     .radio-row { display: flex; gap: 1.5rem; margin-top: .3rem; }
     .radio-row label { font-weight: 400; display: flex; align-items: center; gap: .4rem; cursor: pointer; }
-    .info-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: .65rem .9rem; font-size: .82rem; color: #1e40af; margin-bottom: .8rem; }
 
-    /* Site box */
     .site-box { border: 1.5px solid #e5e7eb; border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 1rem; background: #fafafa; }
     .site-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .8rem; }
     .site-title { font-weight: 700; font-size: .95rem; color: #1a1a2e; }
-    .btn-rm-site { background: #fef2f2; border: 1px solid #fca5a5; color: #dc2626; border-radius: 5px; padding: .3rem .8rem; font-size: .82rem; cursor: pointer; }
+    .btn-rm { background: #fef2f2; border: 1px solid #fca5a5; color: #dc2626; border-radius: 5px; padding: .3rem .8rem; font-size: .82rem; cursor: pointer; }
 
-    /* Table */
     .tbl-wrap { overflow-x: auto; margin-bottom: .4rem; }
-    table { width: 100%; border-collapse: collapse; min-width: 400px; }
+    table { width: 100%; border-collapse: collapse; min-width: 500px; }
     th { font-size: .72rem; font-weight: 700; text-transform: uppercase; color: #6b7280; text-align: left; padding: 0 .35rem .5rem; white-space: nowrap; }
     td { padding: .22rem .3rem; }
     td input, td select { padding: .38rem .45rem; font-size: .82rem; width: 100%; min-width: 70px; }
     .del-btn { background: none; border: none; color: #ef4444; font-size: 1.2rem; cursor: pointer; padding: 0 .3rem; }
 
-    .add-row-btn { background: #f3f4f6; border: 1.5px dashed #9ca3af; border-radius: 5px; padding: .35rem .9rem; font-size: .82rem; cursor: pointer; }
+    .add-row-btn  { background: #f3f4f6; border: 1.5px dashed #9ca3af; border-radius: 5px; padding: .35rem .9rem; font-size: .82rem; cursor: pointer; }
     .add-row-btn:hover { background: #e5e7eb; }
     .add-site-btn { background: #eff6ff; border: 1.5px dashed #3b82f6; border-radius: 6px; width: 100%; padding: .5rem; font-size: .88rem; font-weight: 600; color: #2563eb; cursor: pointer; margin-bottom: 1rem; }
     .add-site-btn:hover { background: #dbeafe; }
     .submit-btn { width: 100%; padding: .8rem; background: #2563eb; color: #fff; border: none; border-radius: 6px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 1.5rem; }
     .submit-btn:disabled { background: #93c5fd; cursor: not-allowed; }
     .success { background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; padding: 1rem 1.2rem; color: #15803d; margin-top: 1.2rem; display: none; }
-    .success h3 { margin: 0 0 .4rem; }
+    .success h3 { margin: 0 0 .4rem; font-size: .95rem; }
     @media(max-width:540px){ .row{ grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
 <div class="card">
-  <h1>Vendor Booking — SCMS</h1>
+  <h1>Vendor Booking — Non SCMS</h1>
   <p class="sub">Complete all fields and submit your delivery booking. You will receive a confirmation email with your booking reference and allocated slot.</p>
 
   <form id="frm">
 
-    <!-- Vendor -->
     <h2>Vendor Details</h2>
     <div class="row">
       <div class="field">
@@ -71,13 +68,8 @@
     </div>
 
     <hr>
-    <!-- Delivery method -->
     <h2>Delivery Method</h2>
     <div class="field">
-      <div class="info-box">
-        <strong>Direct</strong> = Delivered into DC for processing. Generally 1–2 consignments for one collecting DC.<br>
-        <strong>Via DC</strong> = Into collecting DC for on-forwarding to end site. Generally 2+ consignments for multiple sites.
-      </div>
       <div class="radio-row">
         <label><input type="radio" name="dt" value="Direct" onchange="onMode()"> Direct</label>
         <label><input type="radio" name="dt" value="Via DC" onchange="onMode()"> Via DC</label>
@@ -85,15 +77,15 @@
       <div class="err" id="e-dt">Please select a delivery method</div>
     </div>
 
-    <!-- DIRECT section -->
+    <!-- DIRECT -->
     <div id="sect-direct" style="display:none">
       <hr>
-      <h2>DC Site Bookings <small style="font-weight:400;text-transform:none;font-size:.75rem">(up to 5 DCs)</small></h2>
+      <h2>DC Site Bookings <small style="font-weight:400;text-transform:none;font-size:.75rem">(up to 5 DC sites)</small></h2>
       <div id="sites-direct"></div>
-      <button type="button" class="add-site-btn" id="btn-add-site" onclick="addSite()">+ Add Another DC Site</button>
+      <button type="button" class="add-site-btn" id="btn-add-site" onclick="addDirectSite()">+ Add Another DC Site</button>
     </div>
 
-    <!-- VIA DC section -->
+    <!-- VIA DC -->
     <div id="sect-via" style="display:none">
       <hr>
       <div class="field">
@@ -101,51 +93,12 @@
         <select id="init-dc"><option value="">— Select Initial DC —</option></select>
         <div class="err" id="e-init-dc">Required</div>
       </div>
-      <h2>Consignment Details — End Sites <small style="font-weight:400;text-transform:none;font-size:.75rem">(End Site Receiving column required)</small></h2>
-      <div class="tbl-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>End Site Receiving</th>
-              <th>Consignment No</th>
-              <th>Qty of SSCC</th>
-              <th>Loose Load (Y/N)</th>
-              <th>LL Qty of SSCC</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="via-tbody"></tbody>
-        </table>
-      </div>
-      <button type="button" class="add-row-btn" onclick="addViaRow()">+ Add Row</button>
-      <div class="err" id="e-via-con">Add at least one consignment row</div>
-
-      <div style="margin-top:1rem">
-        <div class="row">
-          <div class="field">
-            <label>Preferred Date *</label>
-            <input type="date" id="via-date" />
-            <div class="err" id="e-via-date">Please select a weekday</div>
-          </div>
-          <div class="field">
-            <label>Preferred Time</label>
-            <select id="via-time">
-              <option value="ANY">No Preference</option>
-              <option value="MORNING">Morning (6am – 12pm)</option>
-              <option value="AFTERNOON">Afternoon (12pm – 6pm)</option>
-            </select>
-          </div>
-        </div>
-      </div>
+      <h2>End Site Bookings <small style="font-weight:400;text-transform:none;font-size:.75rem">(up to 5 end sites, all from same initial DC)</small></h2>
+      <div id="sites-via"></div>
+      <button type="button" class="add-site-btn" id="btn-add-via" onclick="addViaSite()">+ Add Another End Site</button>
     </div>
 
-    <!-- Notes always visible once method selected -->
     <div id="sect-notes" style="display:none">
-      <hr>
-      <h2>Notes</h2>
-      <div class="field">
-        <textarea id="notes" rows="3" placeholder="Special instructions, access requirements, or other relevant notes..."></textarea>
-      </div>
       <button type="submit" class="submit-btn" id="sbtn">Submit Booking</button>
     </div>
 
@@ -153,119 +106,188 @@
 
   <div class="success" id="ok">
     <h3>✅ Booking Submitted</h3>
-    <p>Your SCMS booking request has been received. You will receive a confirmation email shortly with your booking reference and allocated slot details. If nothing arrives within 15 minutes please contact the warehouse team.</p>
+    <p>Your Non SCMS booking request has been received. You will receive a confirmation email shortly. If nothing arrives within 15 minutes please contact the warehouse team.</p>
   </div>
 </div>
 
 <script>
 const WEBHOOK = "PASTE_YOUR_POWER_AUTOMATE_URL_HERE";
+const DCS = ["NSW","QLD","VIC ANA","VIC SPL","WA"];
+document.getElementById("init-dc") && DCS.forEach(d => document.getElementById("init-dc").add(new Option(d,d)));
 
-const DCS = ["ANA LAVERTON","ANA NSW RDC","ANA QLD RDC","ANA WA RDC","HS 2037","HS 5001","SPL LAVERTON","SPL NSW RDC","SPL QLD RDC","SPL WA RDC"];
-["init-dc"].forEach(id => DCS.forEach(d => { document.getElementById(id)?.add(new Option(d,d)); }));
-
-let siteCount = 0, rowCounters = {}, viaRowId = 0;
-const MAX_SITES = 5;
-
-function dcOptions(selected="") {
-  return `<option value="">— Select DC —</option>` + DCS.map(d => `<option${d===selected?" selected":""}>${d}</option>`).join("");
+function dcOpts(sel="") {
+  return `<option value="">— Select DC —</option>` + DCS.map(d=>`<option${d===sel?" selected":""}>${d}</option>`).join("");
 }
 
-function addSite() {
-  if (siteCount >= MAX_SITES) return;
-  siteCount++;
-  const s = siteCount;
-  rowCounters[s] = 0;
-  const div = document.createElement("div");
-  div.className = "site-box";
-  div.id = "site-"+s;
-  div.innerHTML = `
+let dCount=0, vCount=0, rc={};
+const MAX=5;
+const today = new Date().toISOString().split("T")[0];
+
+function mhuOpts() { return `<option value="">—</option><option>Pallet</option><option>Stillage</option>`; }
+
+function transportTable(sId, withMixed=false) {
+  const mixedCol  = withMixed ? "<th>Mixed (Y/N)</th>" : "";
+  const mixedCell = (r) => withMixed ? `<td><select id="${sId}m${r}"><option value="N">N</option><option value="Y">Y</option></select></td>` : "";
+  return { header: `
+    <th>Transport Provider</th><th>Consignment Number</th><th>MHU Type</th>
+    <th>Qty of MHU</th><th>Loose Load (Y/N)</th><th>LL SSCC Qty</th>${mixedCol}<th></th>`,
+    rowFn: (r) => `
+    <td><input type="text" id="${sId}tp${r}" placeholder="Transport provider"></td>
+    <td><input type="text" id="${sId}tc${r}" placeholder="Consignment No"></td>
+    <td><select id="${sId}tm${r}">${mhuOpts()}</select></td>
+    <td><input type="number" id="${sId}tq${r}" value="1" min="0" style="width:70px"></td>
+    <td><select id="${sId}tl${r}"><option value="N">N</option><option value="Y">Y</option></select></td>
+    <td><input type="number" id="${sId}tll${r}" value="0" min="0" style="width:70px"></td>
+    ${mixedCell(r)}
+    <td><button type="button" class="del-btn" onclick="document.getElementById('${sId}tr${r}').remove()">×</button></td>` };
+}
+
+function poRowHtml(sId, r) {
+  return `
+    <td><input type="text" id="${sId}ps${r}" placeholder="Site No"></td>
+    <td><input type="text" id="${sId}pr${r}" placeholder="Region No"></td>
+    <td><input type="text" id="${sId}pc${r}" placeholder="CPO Number"></td>
+    <td><input type="text" id="${sId}pa${r}" placeholder="ASN Number"></td>
+    <td><input type="number" id="${sId}pq${r}" value="0" min="0" style="width:70px"></td>
+    <td><button type="button" class="del-btn" onclick="document.getElementById('${sId}por${r}').remove()">×</button></td>`;
+}
+
+function siteHTML(sId, withMixed, removeFn, title) {
+  const tt = transportTable(sId, withMixed);
+  return `
     <div class="site-header">
-      <span class="site-title">Site ${s}</span>
-      ${s > 1 ? `<button type="button" class="btn-rm-site" onclick="removeSite(${s})">Remove Site</button>` : ""}
+      <span class="site-title">${title}</span>
+      ${removeFn ? `<button type="button" class="btn-rm" onclick="${removeFn}">Remove</button>` : ""}
     </div>
-    <div class="field">
-      <label>DC *</label>
-      <select id="s${s}-dc">${dcOptions()}</select>
-      <div class="err" id="e-s${s}-dc">Required</div>
-    </div>
-    <label style="font-size:.82rem;font-weight:700;color:#374151;margin-bottom:.4rem;display:block">Consignment Details</label>
-    <div class="tbl-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Consignment No</th>
-            <th>Qty of SSCC</th>
-            <th>Loose Load (Y/N)</th>
-            <th>LL Qty of SSCC</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="s${s}-tbody"></tbody>
-      </table>
-    </div>
-    <button type="button" class="add-row-btn" onclick="addConRow(${s})">+ Add Row</button>
-    <div class="err" id="e-s${s}-con">Add at least one consignment row</div>
-    <div style="margin-top:.8rem">
-      <div class="row">
-        <div class="field">
-          <label>Preferred Date *</label>
-          <input type="date" id="s${s}-date" min="${new Date().toISOString().split('T')[0]}" />
-          <div class="err" id="e-s${s}-date">Please select a weekday</div>
-        </div>
-        <div class="field">
-          <label>Preferred Time</label>
-          <select id="s${s}-time">
-            <option value="ANY">No Preference</option>
-            <option value="MORNING">Morning (6am – 12pm)</option>
-            <option value="AFTERNOON">Afternoon (12pm – 6pm)</option>
-          </select>
-        </div>
+    ${withMixed ? `<div class="field"><label>End Site Receiving DC *</label><select id="${sId}-edc">${dcOpts()}</select><div class="err" id="e-${sId}-edc">Required</div></div>` : `<div class="field"><label>DC *</label><select id="${sId}-dc">${dcOpts()}</select><div class="err" id="e-${sId}-dc">Required</div></div>`}
+    <div class="field"><label>Dangerous Goods? *</label>
+      <div class="radio-row">
+        <label><input type="radio" name="${sId}-dg" value="Y"> Yes</label>
+        <label><input type="radio" name="${sId}-dg" value="N" checked> No</label>
       </div>
+    </div>
+    <h3>Transport Details</h3>
+    <div class="tbl-wrap">
+      <table><thead><tr>${tt.header}</tr></thead><tbody id="${sId}-t-tbody"></tbody></table>
+    </div>
+    <button type="button" class="add-row-btn" onclick="addTRow('${sId}',${withMixed})">+ Add Transport Row</button>
+    &nbsp;<button type="button" class="add-row-btn" onclick="toggleNsPanel('${sId}-t-paste')">📋 Paste from Spreadsheet</button>
+    <div id="${sId}-t-paste" style="display:none;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:.8rem;margin-top:.4rem;margin-bottom:.4rem">
+      <div style="font-size:.82rem;font-weight:600;color:#374151;margin-bottom:.3rem">Paste rows (comma or tab separated)</div>
+      <div style="font-size:.78rem;color:#6b7280;margin-bottom:.5rem">Columns: <strong>${withMixed ? "Transport Provider, Consignment Number, MHU Type, Qty MHU, Loose Load (Y/N), LL SSCC Qty, Mixed (Y/N)" : "Transport Provider, Consignment Number, MHU Type, Qty MHU, Loose Load (Y/N), LL SSCC Qty"}</strong></div>
+      <textarea id="${sId}-t-paste-txt" rows="3" style="width:100%;font-family:monospace;font-size:.82rem;padding:.4rem;border:1px solid #d1d5db;border-radius:4px;box-sizing:border-box" placeholder="ABC Freight,CON001,Pallet,4,Y,2${withMixed ? ",N" : ""}&#10;XYZ Carriers,CON002,Stillage,2,N,0${withMixed ? ",Y" : ""}"></textarea>
+      <div style="display:flex;gap:.4rem;margin-top:.4rem">
+        <button type="button" onclick="importTPaste('${sId}',${withMixed})" style="background:#2563eb;color:#fff;border:none;border-radius:5px;padding:.35rem .9rem;font-size:.82rem;cursor:pointer">Import</button>
+        <button type="button" onclick="toggleNsPanel('${sId}-t-paste')" style="background:#f3f4f6;border:1px solid #d1d5db;border-radius:5px;padding:.35rem .9rem;font-size:.82rem;cursor:pointer">Cancel</button>
+      </div>
+    </div>
+    <div class="err" id="e-${sId}-t">Add at least one transport row</div>
+    <h3>Purchase Order Details</h3>
+    <div class="tbl-wrap">
+      <table><thead><tr>
+        <th>Site Number</th><th>Region No</th><th>CPO Number</th><th>ASN Number</th><th>SSCC Qty</th><th></th>
+      </tr></thead><tbody id="${sId}-po-tbody"></tbody></table>
+    </div>
+    <button type="button" class="add-row-btn" onclick="addPORow('${sId}')">+ Add PO Row</button>
+    &nbsp;<button type="button" class="add-row-btn" onclick="toggleNsPanel('${sId}-po-paste')">📋 Paste from Spreadsheet</button>
+    <div id="${sId}-po-paste" style="display:none;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:.8rem;margin-top:.4rem;margin-bottom:.4rem">
+      <div style="font-size:.82rem;font-weight:600;color:#374151;margin-bottom:.3rem">Paste rows (comma or tab separated)</div>
+      <div style="font-size:.78rem;color:#6b7280;margin-bottom:.5rem">Columns: <strong>Site Number, Region No, CPO Number, ASN Number, SSCC Qty</strong></div>
+      <textarea id="${sId}-po-paste-txt" rows="3" style="width:100%;font-family:monospace;font-size:.82rem;padding:.4rem;border:1px solid #d1d5db;border-radius:4px;box-sizing:border-box" placeholder="SITE01,R01,CPO123,ASN456,10&#10;SITE02,R02,CPO789,ASN012,5"></textarea>
+      <div style="display:flex;gap:.4rem;margin-top:.4rem">
+        <button type="button" onclick="importPOPaste('${sId}')" style="background:#2563eb;color:#fff;border:none;border-radius:5px;padding:.35rem .9rem;font-size:.82rem;cursor:pointer">Import</button>
+        <button type="button" onclick="toggleNsPanel('${sId}-po-paste')" style="background:#f3f4f6;border:1px solid #d1d5db;border-radius:5px;padding:.35rem .9rem;font-size:.82rem;cursor:pointer">Cancel</button>
+      </div>
+    </div>
+    <h3>Special Instructions</h3>
+    <div class="field"><textarea id="${sId}-inst" rows="2" placeholder="Special handling, access requirements, notes..."></textarea></div>
+    <div class="row" style="margin-top:.5rem">
+      <div class="field"><label>Preferred Date *</label><input type="date" id="${sId}-date" min="${today}" /><div class="err" id="e-${sId}-date">Please select a weekday</div></div>
+      <div class="field"><label>Preferred Time</label><select id="${sId}-time"><option value="ANY">No Preference</option><option value="MORNING">Morning (6am – 12pm)</option><option value="AFTERNOON">Afternoon (12pm – 6pm)</option></select></div>
     </div>`;
-  document.getElementById("sites-direct").appendChild(div);
-  addConRow(s);
-  updateAddBtn();
 }
 
-function removeSite(s) {
-  document.getElementById("site-"+s)?.remove();
-  siteCount--;
-  updateAddBtn();
+function addDirectSite() {
+  if (dCount >= MAX) return;
+  dCount++;
+  const s = dCount; const sId = "d"+s;
+  rc[sId] = { t:0, po:0 };
+  const box = document.createElement("div");
+  box.className = "site-box"; box.id = "ds"+s;
+  box.innerHTML = siteHTML(sId, false, s>1?`removeDirectSite(${s})`:null, `Site ${s}`);
+  document.getElementById("sites-direct").appendChild(box);
+  addTRow(sId, false); addPORow(sId);
+  document.getElementById("btn-add-site").style.display = dCount>=MAX ? "none" : "";
 }
 
-function updateAddBtn() {
-  const btn = document.getElementById("btn-add-site");
-  if (btn) btn.style.display = siteCount >= MAX_SITES ? "none" : "block";
+function removeDirectSite(s) {
+  document.getElementById("ds"+s)?.remove(); dCount--;
+  document.getElementById("btn-add-site").style.display = dCount>=MAX ? "none" : "";
 }
 
-function addConRow(s) {
-  rowCounters[s] = (rowCounters[s]||0) + 1;
-  const r = rowCounters[s];
-  const id = `s${s}r${r}`;
+function addViaSite() {
+  if (vCount >= MAX) return;
+  vCount++;
+  const s = vCount; const sId = "v"+s;
+  rc[sId] = { t:0, po:0 };
+  const box = document.createElement("div");
+  box.className = "site-box"; box.id = "vs"+s;
+  box.innerHTML = siteHTML(sId, true, s>1?`removeViaSite(${s})`:null, `End Site ${s}`);
+  document.getElementById("sites-via").appendChild(box);
+  addTRow(sId, true); addPORow(sId);
+  document.getElementById("btn-add-via").style.display = vCount>=MAX ? "none" : "";
+}
+
+function removeViaSite(s) {
+  document.getElementById("vs"+s)?.remove(); vCount--;
+  document.getElementById("btn-add-via").style.display = vCount>=MAX ? "none" : "";
+}
+
+function addTRow(sId, withMixed) {
+  rc[sId] = rc[sId]||{t:0,po:0};
+  rc[sId].t++;
+  const r = rc[sId].t;
+  const tt = transportTable(sId, withMixed);
   const tr = document.createElement("tr");
-  tr.id = "row-"+id;
-  tr.innerHTML = `
-    <td><input type="text" id="${id}-cn" placeholder="Consignment No"></td>
-    <td><input type="number" id="${id}-qs" value="1" min="0" style="width:80px"></td>
-    <td><select id="${id}-ll"><option value="N">N</option><option value="Y">Y</option></select></td>
-    <td><input type="number" id="${id}-lq" value="0" min="0" style="width:80px"></td>
-    <td><button type="button" class="del-btn" onclick="document.getElementById('row-${id}').remove()">×</button></td>`;
-  document.getElementById("s"+s+"-tbody").appendChild(tr);
+  tr.id = sId+"tr"+r;
+  tr.innerHTML = tt.rowFn(r);
+  document.getElementById(sId+"-t-tbody").appendChild(tr);
 }
 
-function addViaRow() {
-  viaRowId++;
-  const r = viaRowId;
+function addPORow(sId) {
+  rc[sId] = rc[sId]||{t:0,po:0};
+  rc[sId].po++;
+  const r = rc[sId].po;
   const tr = document.createElement("tr");
-  tr.id = "vr"+r;
-  tr.innerHTML = `
-    <td><input type="text" id="v${r}-es" placeholder="End site name"></td>
-    <td><input type="text" id="v${r}-cn" placeholder="Consignment No"></td>
-    <td><input type="number" id="v${r}-qs" value="1" min="0" style="width:80px"></td>
-    <td><select id="v${r}-ll"><option value="N">N</option><option value="Y">Y</option></select></td>
-    <td><input type="number" id="v${r}-lq" value="0" min="0" style="width:80px"></td>
-    <td><button type="button" class="del-btn" onclick="document.getElementById('vr${r}').remove()">×</button></td>`;
-  document.getElementById("via-tbody").appendChild(tr);
+  tr.id = sId+"por"+r;
+  tr.innerHTML = poRowHtml(sId, r);
+  document.getElementById(sId+"-po-tbody").appendChild(tr);
+}
+
+function getTRows(sId, withMixed) {
+  return [...document.querySelectorAll(`#${sId}-t-tbody tr`)].map(tr => {
+    const r = tr.id.replace(sId+"tr","");
+    const cn = document.getElementById(sId+"tc"+r)?.value.trim();
+    if (!cn) return null;
+    const o = { provider: document.getElementById(sId+"tp"+r)?.value.trim()||"",
+      consignment: cn, mhu_type: document.getElementById(sId+"tm"+r)?.value||"",
+      qty_mhu: +document.getElementById(sId+"tq"+r)?.value||0,
+      loose_load: document.getElementById(sId+"tl"+r)?.value||"N",
+      ll_sscc_qty: +document.getElementById(sId+"tll"+r)?.value||0 };
+    if (withMixed) o.mixed = document.getElementById(sId+"m"+r)?.value||"N";
+    return o;
+  }).filter(Boolean);
+}
+
+function getPORows(sId) {
+  return [...document.querySelectorAll(`#${sId}-po-tbody tr`)].map(tr => {
+    const r = tr.id.replace(sId+"por","");
+    return { site_number: document.getElementById(sId+"ps"+r)?.value.trim()||"",
+      region_no: document.getElementById(sId+"pr"+r)?.value.trim()||"",
+      cpo_number: document.getElementById(sId+"pc"+r)?.value.trim()||"",
+      asn_number: document.getElementById(sId+"pa"+r)?.value.trim()||"",
+      sscc_qty: +document.getElementById(sId+"pq"+r)?.value||0 };
+  });
 }
 
 function onMode() {
@@ -273,34 +295,8 @@ function onMode() {
   document.getElementById("sect-direct").style.display = dt==="Direct" ? "block" : "none";
   document.getElementById("sect-via").style.display    = dt==="Via DC"  ? "block" : "none";
   document.getElementById("sect-notes").style.display  = dt ? "block" : "none";
-  if (dt==="Direct" && siteCount===0) addSite();
-  if (dt==="Via DC" && viaRowId===0) addViaRow();
-}
-
-function getSiteRows(s) {
-  const rows = [];
-  document.querySelectorAll(`#s${s}-tbody tr`).forEach(tr => {
-    const n = tr.id.replace(`row-s${s}r`,"");
-    const id = `s${s}r${n}`;
-    const cn = document.getElementById(id+"-cn")?.value.trim();
-    if (cn) rows.push({ consignment: cn, qty_sscc: +document.getElementById(id+"-qs")?.value||0,
-      loose_load: document.getElementById(id+"-ll")?.value||"N",
-      ll_qty_sscc: +document.getElementById(id+"-lq")?.value||0 });
-  });
-  return rows;
-}
-
-function getViaRows() {
-  const rows = [];
-  document.querySelectorAll("#via-tbody tr").forEach(tr => {
-    const r = tr.id.replace("vr","");
-    const cn = document.getElementById("v"+r+"-cn")?.value.trim();
-    if (cn) rows.push({ end_site_receiving: document.getElementById("v"+r+"-es")?.value.trim()||"",
-      consignment: cn, qty_sscc: +document.getElementById("v"+r+"-qs")?.value||0,
-      loose_load: document.getElementById("v"+r+"-ll")?.value||"N",
-      ll_qty_sscc: +document.getElementById("v"+r+"-lq")?.value||0 });
-  });
-  return rows;
+  if (dt==="Direct" && dCount===0) addDirectSite();
+  if (dt==="Via DC"  && vCount===0) addViaSite();
 }
 
 function isWeekend(s) { const d = new Date(s+"T12:00:00"); return d.getDay()===0||d.getDay()===6; }
@@ -318,52 +314,68 @@ document.getElementById("frm").onsubmit = async function(e) {
 
   const vendor = document.getElementById("vendor").value.trim();
   const email  = document.getElementById("email").value.trim();
-  const notes  = document.getElementById("notes")?.value.trim()||null;
   const btn    = document.getElementById("sbtn");
   btn.disabled = true; btn.textContent = "Submitting…";
 
   let payload;
 
   if (dt === "Direct") {
-    const siteBoxes = document.querySelectorAll(".site-box");
+    const boxes = [...document.querySelectorAll("#sites-direct .site-box")];
     let allOk = true;
-    siteBoxes.forEach(box => {
-      const s = box.id.replace("site-","");
-      const dcVal = document.getElementById("s"+s+"-dc")?.value;
-      show("s"+s+"-dc", !dcVal);
-      show("s"+s+"-con", getSiteRows(s).length===0);
-      const d = document.getElementById("s"+s+"-date")?.value;
-      show("s"+s+"-date", !d||isWeekend(d));
-      if (!dcVal||getSiteRows(s).length===0||!d||isWeekend(d)) allOk = false;
+    boxes.forEach(box => {
+      const s = box.id.replace("ds",""); const sId = "d"+s;
+      show(sId+"-dc", !document.getElementById(sId+"-dc")?.value);
+      show(sId+"-t", getTRows(sId,false).length===0);
+      const d = document.getElementById(sId+"-date")?.value;
+      show(sId+"-date", !d||isWeekend(d));
+      if (!document.getElementById(sId+"-dc")?.value||getTRows(sId,false).length===0||!d||isWeekend(d)) allOk=false;
     });
     if (!allOk) { btn.disabled=false; btn.textContent="Submit Booking"; return; }
 
-    const sites = [...siteBoxes].map(box => {
-      const s = box.id.replace("site-","");
-      const rows = getSiteRows(s);
-      return { dc: document.getElementById("s"+s+"-dc").value,
-        consignment_info: rows, no_sscc: rows.reduce((t,r)=>t+r.qty_sscc,0),
-        preferred_date: document.getElementById("s"+s+"-date").value,
-        preferred_time: document.getElementById("s"+s+"-time").value };
+    const sites = boxes.map(box => {
+      const s = box.id.replace("ds",""); const sId = "d"+s;
+      const tRows = getTRows(sId, false);
+      return { dc: document.getElementById(sId+"-dc").value,
+        dangerous_goods: document.querySelector(`input[name=${sId}-dg]:checked`)?.value||"N",
+        transport_info: tRows, po_detail: getPORows(sId),
+        special_instructions: document.getElementById(sId+"-inst")?.value.trim()||null,
+        preferred_date: document.getElementById(sId+"-date").value,
+        preferred_time: document.getElementById(sId+"-time").value };
     });
 
-    payload = { booking_type:"Vendor Booking - SCMS", vendor_code:vendor,
-      delivery_type:"Direct", sites, notes, email };
+    payload = { booking_type:"Vendor Booking - Non SCMS", vendor_code:vendor,
+      delivery_type:"Direct", sites, email };
 
   } else {
     const idc = document.getElementById("init-dc").value;
     show("init-dc", !idc);
-    const vrows = getViaRows();
-    show("via-con", vrows.length===0);
-    const vd = document.getElementById("via-date").value;
-    show("via-date", !vd||isWeekend(vd));
-    if (!idc||vrows.length===0||!vd||isWeekend(vd)) { btn.disabled=false; btn.textContent="Submit Booking"; return; }
+    if (!idc) { btn.disabled=false; btn.textContent="Submit Booking"; return; }
 
-    payload = { booking_type:"Vendor Booking - SCMS", vendor_code:vendor,
-      delivery_type:"Via DC", initial_dc:idc,
-      consignment_info: vrows, no_sscc: vrows.reduce((t,r)=>t+r.qty_sscc,0),
-      preferred_date:vd, preferred_time:document.getElementById("via-time").value,
-      notes, email };
+    const vboxes = [...document.querySelectorAll("#sites-via .site-box")];
+    let allOk = true;
+    vboxes.forEach(box => {
+      const s = box.id.replace("vs",""); const sId = "v"+s;
+      show(sId+"-edc", !document.getElementById(sId+"-edc")?.value);
+      show(sId+"-t", getTRows(sId,true).length===0);
+      const d = document.getElementById(sId+"-date")?.value;
+      show(sId+"-date", !d||isWeekend(d));
+      if (!document.getElementById(sId+"-edc")?.value||getTRows(sId,true).length===0||!d||isWeekend(d)) allOk=false;
+    });
+    if (!allOk) { btn.disabled=false; btn.textContent="Submit Booking"; return; }
+
+    const end_sites = vboxes.map(box => {
+      const s = box.id.replace("vs",""); const sId = "v"+s;
+      const tRows = getTRows(sId, true);
+      return { end_site_dc: document.getElementById(sId+"-edc").value,
+        dangerous_goods: document.querySelector(`input[name=${sId}-dg]:checked`)?.value||"N",
+        transport_info: tRows, po_detail: getPORows(sId),
+        special_instructions: document.getElementById(sId+"-inst")?.value.trim()||null,
+        preferred_date: document.getElementById(sId+"-date").value,
+        preferred_time: document.getElementById(sId+"-time").value };
+    });
+
+    payload = { booking_type:"Vendor Booking - Non SCMS", vendor_code:vendor,
+      delivery_type:"Via DC", initial_dc:idc, end_sites, email };
   }
 
   try {
@@ -379,7 +391,52 @@ document.getElementById("frm").onsubmit = async function(e) {
 const qv = new URLSearchParams(location.search).get("vendor");
 if (qv) { const f=document.getElementById("vendor"); f.value=qv; f.readOnly=true; f.style.background="#f3f4f6"; f.style.color="#6b7280"; }
 
-document.getElementById("via-date").min = new Date().toISOString().split("T")[0];
+// ── Paste helpers ─────────────────────────────────────────────────────────
+function toggleNsPanel(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = el.style.display==="none" ? "block" : "none";
+}
+
+function importTPaste(sId, withMixed) {
+  const text = document.getElementById(sId+"-t-paste-txt").value.trim();
+  if (!text) return;
+  text.split(/\r?\n/).filter(l=>l.trim()).forEach(line => {
+    rc[sId] = rc[sId]||{t:0,po:0}; rc[sId].t++;
+    const r = rc[sId].t; const p = line.split(/\t|,|;/).map(x=>x.trim());
+    const mCell = withMixed ? `<td><select id="${sId}m${r}"><option value="N"${(p[6]||"").toUpperCase()!=="Y"?" selected":""}>N</option><option value="Y"${(p[6]||"").toUpperCase()==="Y"?" selected":""}>Y</option></select></td>` : "";
+    const tr = document.createElement("tr"); tr.id = sId+"tr"+r;
+    tr.innerHTML = `
+      <td><input type="text" id="${sId}tp${r}" value="${(p[0]||"").replace(/"/g,'&quot;')}"></td>
+      <td><input type="text" id="${sId}tc${r}" value="${(p[1]||"").replace(/"/g,'&quot;')}"></td>
+      <td><select id="${sId}tm${r}"><option value="">—</option><option${p[2]==="Pallet"?" selected":""}>Pallet</option><option${p[2]==="Stillage"?" selected":""}>Stillage</option></select></td>
+      <td><input type="number" id="${sId}tq${r}" value="${+p[3]||1}" min="0" style="width:70px"></td>
+      <td><select id="${sId}tl${r}"><option value="N"${(p[4]||"").toUpperCase()!=="Y"?" selected":""}>N</option><option value="Y"${(p[4]||"").toUpperCase()==="Y"?" selected":""}>Y</option></select></td>
+      <td><input type="number" id="${sId}tll${r}" value="${+p[5]||0}" min="0" style="width:70px"></td>
+      ${mCell}
+      <td><button type="button" class="del-btn" onclick="document.getElementById('${sId}tr${r}').remove()">×</button></td>`;
+    document.getElementById(sId+"-t-tbody").appendChild(tr);
+  });
+  document.getElementById(sId+"-t-paste").style.display = "none";
+}
+
+function importPOPaste(sId) {
+  const text = document.getElementById(sId+"-po-paste-txt").value.trim();
+  if (!text) return;
+  text.split(/\r?\n/).filter(l=>l.trim()).forEach(line => {
+    rc[sId] = rc[sId]||{t:0,po:0}; rc[sId].po++;
+    const r = rc[sId].po; const p = line.split(/\t|,|;/).map(x=>x.trim());
+    const tr = document.createElement("tr"); tr.id = sId+"por"+r;
+    tr.innerHTML = `
+      <td><input type="text" id="${sId}ps${r}" value="${(p[0]||"").replace(/"/g,'&quot;')}"></td>
+      <td><input type="text" id="${sId}pr${r}" value="${(p[1]||"").replace(/"/g,'&quot;')}"></td>
+      <td><input type="text" id="${sId}pc${r}" value="${(p[2]||"").replace(/"/g,'&quot;')}"></td>
+      <td><input type="text" id="${sId}pa${r}" value="${(p[3]||"").replace(/"/g,'&quot;')}"></td>
+      <td><input type="number" id="${sId}pq${r}" value="${+p[4]||0}" min="0" style="width:70px"></td>
+      <td><button type="button" class="del-btn" onclick="document.getElementById('${sId}por${r}').remove()">×</button></td>`;
+    document.getElementById(sId+"-po-tbody").appendChild(tr);
+  });
+  document.getElementById(sId+"-po-paste").style.display = "none";
+}
 </script>
 </body>
 </html>
