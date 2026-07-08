@@ -319,55 +319,55 @@ document.getElementById("frm").onsubmit = async function(e) {
   const vendor = document.getElementById("vendor").value.trim();
   const email  = document.getElementById("email").value.trim();
   const notes  = document.getElementById("notes")?.value.trim()||null;
-
-  const btn = document.getElementById("sbtn");
+  const btn    = document.getElementById("sbtn");
   btn.disabled = true; btn.textContent = "Submitting…";
 
+  let payload;
+
+  if (dt === "Direct") {
+    const siteBoxes = document.querySelectorAll(".site-box");
+    let allOk = true;
+    siteBoxes.forEach(box => {
+      const s = box.id.replace("site-","");
+      const dcVal = document.getElementById("s"+s+"-dc")?.value;
+      show("s"+s+"-dc", !dcVal);
+      show("s"+s+"-con", getSiteRows(s).length===0);
+      const d = document.getElementById("s"+s+"-date")?.value;
+      show("s"+s+"-date", !d||isWeekend(d));
+      if (!dcVal||getSiteRows(s).length===0||!d||isWeekend(d)) allOk = false;
+    });
+    if (!allOk) { btn.disabled=false; btn.textContent="Submit Booking"; return; }
+
+    const sites = [...siteBoxes].map(box => {
+      const s = box.id.replace("site-","");
+      const rows = getSiteRows(s);
+      return { dc: document.getElementById("s"+s+"-dc").value,
+        consignment_info: rows, no_sscc: rows.reduce((t,r)=>t+r.qty_sscc,0),
+        preferred_date: document.getElementById("s"+s+"-date").value,
+        preferred_time: document.getElementById("s"+s+"-time").value };
+    });
+
+    payload = { booking_type:"Vendor Booking - SCMS", vendor_code:vendor,
+      delivery_type:"Direct", sites, notes, email };
+
+  } else {
+    const idc = document.getElementById("init-dc").value;
+    show("init-dc", !idc);
+    const vrows = getViaRows();
+    show("via-con", vrows.length===0);
+    const vd = document.getElementById("via-date").value;
+    show("via-date", !vd||isWeekend(vd));
+    if (!idc||vrows.length===0||!vd||isWeekend(vd)) { btn.disabled=false; btn.textContent="Submit Booking"; return; }
+
+    payload = { booking_type:"Vendor Booking - SCMS", vendor_code:vendor,
+      delivery_type:"Via DC", initial_dc:idc,
+      consignment_info: vrows, no_sscc: vrows.reduce((t,r)=>t+r.qty_sscc,0),
+      preferred_date:vd, preferred_time:document.getElementById("via-time").value,
+      notes, email };
+  }
+
   try {
-    if (dt === "Direct") {
-      const sites = document.querySelectorAll(".site-box");
-      let allOk = true;
-      sites.forEach(box => {
-        const s = box.id.replace("site-","");
-        const dcVal = document.getElementById("s"+s+"-dc")?.value;
-        show("s"+s+"-dc", !dcVal);
-        show("s"+s+"-con", getSiteRows(s).length===0);
-        const d = document.getElementById("s"+s+"-date")?.value;
-        show("s"+s+"-date", !d||isWeekend(d));
-        if (!dcVal || getSiteRows(s).length===0 || !d||isWeekend(d)) allOk = false;
-      });
-      if (!allOk) { btn.disabled=false; btn.textContent="Submit Booking"; return; }
-
-      for (const box of sites) {
-        const s = box.id.replace("site-","");
-        const rows = getSiteRows(s);
-        const payload = { booking_type:"Vendor Booking - SCMS", vendor_code:vendor,
-          delivery_type:"Direct", dc:document.getElementById("s"+s+"-dc").value,
-          end_site_dc:null, consignment_info:JSON.stringify(rows),
-          no_sscc:rows.reduce((t,r)=>t+r.qty_sscc,0),
-          preferred_date:document.getElementById("s"+s+"-date").value,
-          preferred_time:document.getElementById("s"+s+"-time").value,
-          comments:notes, email };
-        await fetch(WEBHOOK, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload) });
-      }
-    } else {
-      const idc = document.getElementById("init-dc").value;
-      show("init-dc", !idc);
-      const vrows = getViaRows();
-      show("via-con", vrows.length===0);
-      const vd = document.getElementById("via-date").value;
-      show("via-date", !vd||isWeekend(vd));
-      if (!idc||vrows.length===0||!vd||isWeekend(vd)) { btn.disabled=false; btn.textContent="Submit Booking"; return; }
-
-      const payload = { booking_type:"Vendor Booking - SCMS", vendor_code:vendor,
-        delivery_type:"Via DC", dc:idc, end_site_dc:null,
-        consignment_info:JSON.stringify(vrows),
-        no_sscc:vrows.reduce((t,r)=>t+r.qty_sscc,0),
-        preferred_date:vd, preferred_time:document.getElementById("via-time").value,
-        comments:notes, email };
-      await fetch(WEBHOOK, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload) });
-    }
-
+    await fetch(WEBHOOK, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload) });
     document.getElementById("frm").style.display="none";
     document.getElementById("ok").style.display="block";
   } catch {
